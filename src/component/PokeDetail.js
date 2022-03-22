@@ -2,13 +2,13 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 
-function PokeDetail() {
+function PokeDetail( {pokemonName} ) {
     const [pokeData, setPokeData] = useState('');
 
     useEffect(() => {
         async function fetchPokeData() {
             try {
-                const resultPokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/ekans`)
+                const resultPokeData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
                 setPokeData(resultPokeData.data);
             } catch (e) {
                 console.error(e);
@@ -20,8 +20,6 @@ function PokeDetail() {
     }, []);
 
     console.log(pokeData);
-    const pokemonAbilities = pokeData.abilities;
-
 
     return (
 
@@ -32,8 +30,8 @@ function PokeDetail() {
         //amount of moves => pokeData.moves
 
         <div className="poke-container">
-                    <article className="pokeDetail">
-                        <p>{pokeData.name}</p>
+                    <article className="pokeDetail" key={pokeData.id}>
+                        <p>{pokemonName}</p>
                         <img className="pokeimg" src={pokeData.sprites.front_default} alt="pokemon"/>
                         <p>Weight: {pokeData.weight}</p>
                         <p>Moves: {pokeData.moves.length}</p>

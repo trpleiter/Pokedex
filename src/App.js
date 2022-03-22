@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import './App.css';
+import PokeDetail from "./component/PokeDetail";
 
 function App() {
     const [pokeData, setPokeData] = useState('');
@@ -20,6 +21,7 @@ function App() {
     }, []);
 
     let partOfPokedex = pokeData.results;
+    let pokemonName = "";
 
     return (
 
@@ -27,15 +29,17 @@ function App() {
 
         {console.log (pokeData)}
         {partOfPokedex.map((data) => {
+            pokemonName = data.name
         return (
-            <article className="pokeDetail">
-                <p>{data.name}</p>
-                <img className="pokeimg" src={data.image} alt="recipe"/>
-            </article>
+            <PokeDetail
+                {pokemonName}
+            />
 
         )
 
         })}
+
+
     </div>
 )
     ;

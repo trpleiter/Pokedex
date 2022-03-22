@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import PokeDetail from "./component/PokeDetail";
 
 ReactDOM.render(
   <React.StrictMode>
-   <PokeDetail />
+   <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
